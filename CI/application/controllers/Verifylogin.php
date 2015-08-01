@@ -3,25 +3,21 @@
  	class Verifylogin extends CI_Controller {
 	
 		public function index(){
-			redirect('view_login','refresh');
-			/*
-			$this->load->view('login_fail');
-			
+			$this->load->helper('url');
 			$this->load->library('form_validation');
-			$this->form_validation->set_rules('username','Username','trim|required|xss_clean');
+			$this->form_validation->set_rules('nombre','Nombre','trim|required|xss_clean');
 			$this->form_validation->set_rules('password','Password','trim|required|xss_clean|callback_check_database');
 
 			if($this->form_validation->run() == false){
-				$this->load->view('login_fail');
+				$this->load->view('view_login_fail');
 			}else{
-				redirect('home');
+				echo "asdasd";
+				//redirect('home');
 			}
-
-			*/
 		}
-			/*
+			
 		public function check_database($password){
-			$username = $this->input->post('username');
+			$username = $this->input->post('nombre');
 			$this->load->model('Users','users');
 			$result = $this->users->login($username, $password);
 
@@ -29,8 +25,8 @@
 				$sess_array = array();
 				foreach ($result as $row) {
 					$sess_array = array(
-						'id' => $row->id,
-						'username' => $row->username
+						'idUsuario' => $row->id,
+						'nombre' => $row->username
 					 );
 					$this->session->set_userdata('logged_in', $sess_array);
 				}
@@ -40,8 +36,6 @@
 				return false;
 			}
 		}
-
-		*/
 	}
 
 ?>

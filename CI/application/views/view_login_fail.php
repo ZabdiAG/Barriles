@@ -23,7 +23,7 @@
             $atributos = array('id'=> 'form' , 'class' => 'form-login');
             echo form_open('verifiylogin', $atributos);
             ?>
-		        <h2 class="form-login-heading">Inicio de sesion</h2>
+		        <h2 class="form-login-heading">Inicio de sesion fallido, intente de nuevo.</h2>
 		        <div class="login-wrap">
 		            <input type="text" class="form-control" id="username" placeholder="Usuario" autofocus>
 		            <br>

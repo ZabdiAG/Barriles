@@ -500,4 +500,4 @@ $config['rewrite_short_tags'] = FALSE;
 $config['proxy_ips'] = '';
 
 $config['encryption_key'] = 'REALLY_LONG_NUMBER';
-$config['index_page'] = '';
+

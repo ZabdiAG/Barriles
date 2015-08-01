@@ -19,10 +19,11 @@
   <body id="aa">
 	  <div id="login-page">
 	  	<div class="container">
-		        <h2 class="form-login-heading">Inicio de sesion</h2>
+		       
             <?php $atributos = array('id'=> 'form' , 'class' => 'form-login');
               echo form_open('verifylogin', $atributos);
             ?>
+            <h2 class="form-login-heading">Inicio de sesion</h2>
 		        <div class="login-wrap">
 		            <input type="text" class="form-control" id="username" placeholder="Usuario" autofocus>
 		            <br>
