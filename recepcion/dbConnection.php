@@ -10,7 +10,7 @@
 class DbConnection{
     public $servername = '127.0.0.1';
     public $username   = 'root';
-    public $password   = 'root';
+    public $password   = 'mymetallica1223s';
     public $db_name    = 'recepcion';
     public $mysqli;
 
@@ -18,7 +18,7 @@ class DbConnection{
         $this->mysqli= new Mysqli( $this->servername, $this->username, $this->password, $this->db_name );
         // Check connection
         if ($this->mysqli->connect_error) {
-            die("Connection failed: "    . $this->mysqli->connect_error);
+            die("Connection failed: " . $this->mysqli->connect_error);
         }
     }
 
