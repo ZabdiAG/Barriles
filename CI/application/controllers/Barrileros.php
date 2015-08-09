@@ -8,8 +8,15 @@
 
 class Barrileros extends CI_Controller{
     public function index(){
+        $this->load->model('Barrileros_model');
+        $arg['data']= $this->Barrileros_model->getAll();
         $this->load->view('header');
-        echo base_url();
+        $this->load->view('barrileros/index',$arg);
         $this->load->view('footer');
+    }
+
+    public function add(){
+        $this->load->model('Barrileros_model');
+        $this->Barrileros_model->add($_POST);
     }
 }
