@@ -8,7 +8,19 @@
  */
 class Maestroseries_model extends CI_Model
 {
-
+    /*
+     * idMaestroSerie
+     * serie
+     * partNumber
+     * stdPack
+     * ubicacion
+     * fechaAlta
+     * fechaUpdate
+     * pesoInicial
+     * pesoRestante
+     * cantidadRestante
+     * pesoContenedor
+     */
     public function __construct(){
         parent::__construct();
     }
