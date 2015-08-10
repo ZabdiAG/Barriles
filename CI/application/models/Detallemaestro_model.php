@@ -26,7 +26,10 @@ class Detallemaestro_model extends CI_Model
 
     public function getAll(){
         $result = Array();
-        $query= $this->db->get('detallemaestro');
+        $query= $this->db->query('
+            SELECT idDetalleMaestro,tipoMovimiento,fecha,pesoActual,consumoKg,consumoLongitud,localizacion,gafete,detallemaestro.idMaestroSerie, maestroseries.serie
+            FROM detallemaestro JOIN maestroseries ON detallemaestro.idMaestroSerie = maestroseries.idMaestroSerie
+        ');
         foreach($query->result() as $row){
             $result[] = $row;
         }
