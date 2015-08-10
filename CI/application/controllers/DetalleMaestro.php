@@ -10,7 +10,9 @@ class DetalleMaestro extends CI_Controller
 {
     public function index(){
         $this->load->model('Detallemaestro_model');
+        $this->load->model('Maestroseries_model');
         $arg['data']= $this->Detallemaestro_model->getAll();
+        $arg['maestroSeries'] = $this->Maestroseries_model->getAll();
         $this->load->view('header');
         $this->load->view('detallemaestro/index',$arg);
         $this->load->view('footer');
