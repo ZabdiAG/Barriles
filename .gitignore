@@ -8,3 +8,4 @@ Theme
 .idea
 recepcion/dbConnection.php
 CI/application/config/database.php
+CI/assets
