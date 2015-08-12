@@ -6,7 +6,6 @@
  * Time: 01:52 PM
  */
 
-var_dump($data);
 ?>
 
 
@@ -14,7 +13,7 @@ var_dump($data);
 
 <section id="main-content">
     <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Api</h3>
+        <h3><i class="fa fa-angle-right"></i> Bajas</h3>
         <div class="row mt">
             <div class="col-lg-12">
                 <div class="content-panel">
@@ -52,7 +51,7 @@ var_dump($data);
             </div><!-- /col-lg-4 -->
         </div><!-- /row -->
 
-        <button id="btnAddApi" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-success">Add Api</button>
+        <button id="btnAddApi" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-success">Add Baja</button>
 
     </section><! --/wrapper -->
 </section>
@@ -63,36 +62,41 @@ var_dump($data);
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel"> Add API </h4>
+                <h4 class="modal-title" id="myModalLabel"> Add Baja </h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="inputFormDate">Date</label>
-                    <input type="date" class="form-control" id="inputFormDate">
+                    <label for="inputFormSlocInicial">Sloc inicial</label>
+                    <input type="text" class="form-control" id="inputFormSlocInicial">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormPartNumber">part Number</label>
-                    <input type="text" class="form-control" id="inputFormPartNumber">
+                    <label for="inputFormSlocDestino"> Sloc Destino</label>
+                    <input type="text" class="form-control" id="inputFormSlocDestino">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormSerie">Serie</label>
-                    <input type="text" class="form-control" id="inputFormSerie">
+                    <label for="inputFormIsBajaSap"> isBajaSAP</label>
+                    <input type="text" class="form-control" id="inputFormIsBajaSap">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormTaraWeight">Tara weight</label>
-                    <input type="text" class="form-control" id="inputFormTaraWeight">
+                    <label for="inputFormDateBaja"> Date baja</label>
+                    <input type="datetime-local" class="form-control" id="inputFormDateBaja">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormTotalWeight">Total weight</label>
-                    <input type="text" class="form-control" id="inputFormTotalWeight">
+                    <label for="inputFormDocumento"> Documento</label>
+                    <input type="text" class="form-control" id="inputFormDocumento">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormTotalLenght">Total lenght</label>
-                    <input type="text" class="form-control" id="inputFormTotalLenght">
+                    <label for="inputFormAjusteCantidad"> Ajuste cantidad</label>
+                    <input type="text" class="form-control" id="inputFormAjusteCantidad">
                 </div>
+
                 <div class="form-group">
-                    <label for="inputFormUnit">Unit</label>
-                    <input type="text" class="form-control" id="inputFormUnit">
+                    <label for="inputFormIdDetalleMaestro">Maestro Series:</label>
+                    <select class="form-control" id="inputFormIdDetalleMaestro">
+                        <?php foreach($detalleMaestro as $row):?>
+                            <option value="<?php echo $row->idDetalleMaestro?>"><?php echo $row->serie.' Tipo movimiento :'.$row->tipoMovimiento?></option>
+                        <?php endforeach ?>
+                    </select>
                 </div>
 
 
@@ -129,18 +133,19 @@ var_dump($data);
 
         $('#btnConfirmAdd').click(function () {
             console.log('clicked');
-            $.post('<?php echo base_url('index.php/Api/add')?>',
+            $.post('<?php echo base_url('index.php/Bajas/add')?>',
                 {
-                    serie       : $('#inputFormSerie').val(),
-                    partNumber  : $('#inputFormPartNumber').val(),
-                    totalWeight : $('#inputFormTotalWeight').val(),
-                    taraWeight  : $('#inputFormTaraWeight').val(),
-                    totalLenght : $('#inputFormTotalLenght').val(),
-                    unit        : $('#inputFormUnit').val(),
-                    date        : $('#inputFormDate').val()
+                    slocInicial     : $('#inputFormSlocInicial').val(),
+                    slocDestino     : $('#inputFormSlocDestino').val(),
+                    isBajaSAP       : $('#inputFormIsBajaSap').val(),
+                    idDetalleMaestro: $('#inputFormIdDetalleMaestro').val(),
+                    dateBaja        : $('#inputFormDateBaja').val(),
+                    documento       : $('#inputFormDocumento').val(),
+                    ajusteCantidad  : $('#inputFormAjusteCantidad').val()
                 },
                 function (data) {
                     console.log(data);
+                    location.reload();
                 }
             );
         });
