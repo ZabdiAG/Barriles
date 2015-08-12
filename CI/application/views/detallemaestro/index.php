@@ -8,7 +8,7 @@
 
 <section id="main-content">
     <section class="wrapper">
-        <h3><i class="fa fa-angle-right"></i> Api</h3>
+        <h3><i class="fa fa-angle-right"></i> Detalle maestro</h3>
         <div class="row mt">
             <div class="col-lg-12">
                 <div class="content-panel">
@@ -30,14 +30,15 @@
                             <tbody>
                             <?php foreach($data as $row):?>
                                 <tr>
-                                    <td><?php echo $row->idAPI?></td>
-                                    <td><?php echo $row->date?></td>
-                                    <td><?php echo $row->partNumber?></td>
+                                    <td><?php echo $row->idDetalleMaestro?></td>
+                                    <td><?php echo $row->tipoMovimiento?></td>
+                                    <td><?php echo $row->fecha?></td>
+                                    <td><?php echo $row->pesoActual?></td>
+                                    <td><?php echo $row->consumoKg?></td>
+                                    <td><?php echo $row->consumoLongitud?></td>
+                                    <td><?php echo $row->localizacion?></td>
+                                    <td><?php echo $row->gafete?></td>
                                     <td><?php echo $row->serie?></td>
-                                    <td><?php echo $row->taraWeight?></td>
-                                    <td><?php echo $row->totalLenght?></td>
-                                    <td><?php echo $row->totalWeight?></td>
-                                    <td><?php echo $row->unit?></td>
                                 </tr>
                             <?php endforeach; ?>
                             </tbody>
@@ -47,7 +48,7 @@
             </div><!-- /col-lg-4 -->
         </div><!-- /row -->
 
-        <button id="btnAddApi" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-success">Add Api</button>
+        <button id="btnAddApi" data-toggle="modal" data-target="#myModal" type="button" class="btn btn-success">Add Detalle maestro</button>
 
     </section><! --/wrapper -->
 </section>
@@ -58,37 +59,46 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel"> Add API </h4>
+                <h4 class="modal-title" id="myModalLabel"> Add Detalle maestro</h4>
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <label for="inputFormDate">Date</label>
-                    <input type="date" class="form-control" id="inputFormDate">
+                    <label for="inputFormTipoMovimiento"> Tipo movimiento</label>
+                    <input type="text" class="form-control" id="inputFormTipoMovimiento">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormPartNumber">part Number</label>
-                    <input type="text" class="form-control" id="inputFormPartNumber">
+                    <label for="inputFormFecha"> Fecha</label>
+                    <input type="date" class="form-control" id="inputFormFecha">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormSerie">Serie</label>
-                    <input type="text" class="form-control" id="inputFormSerie">
+                    <label for="inputFormPesoActual"> Peso actual</label>
+                    <input type="text" class="form-control" id="inputFormPesoActual">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormTaraWeight">Tara weight</label>
-                    <input type="text" class="form-control" id="inputFormTaraWeight">
+                    <label for="inputFormConsumoKg"> Consumo Kg</label>
+                    <input type="text" class="form-control" id="inputFormConsumoKg">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormTotalWeight">Total weight</label>
-                    <input type="text" class="form-control" id="inputFormTotalWeight">
+                    <label for="inputFormConsumoLongitud"> Consumo longitud</label>
+                    <input type="text" class="form-control" id="inputFormConsumoLongitud">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormTotalLenght">Total lenght</label>
-                    <input type="text" class="form-control" id="inputFormTotalLenght">
+                    <label for="inputFormLocalizacion"> Localizacion</label>
+                    <input type="text" class="form-control" id="inputFormLocalizacion">
                 </div>
                 <div class="form-group">
-                    <label for="inputFormUnit">Unit</label>
-                    <input type="text" class="form-control" id="inputFormUnit">
+                    <label for="inputFormGafete"> Gafete</label>
+                    <input type="text" class="form-control" id="inputFormGafete">
                 </div>
+                <div class="form-group">
+                    <label for="inputFormIdMaestroSerie">Maestro Series:</label>
+                    <select class="form-control" id="inputFormIdMaestroSerie">
+                        <?php foreach($maestroSeries as $row):?>
+                        <option value="<?php echo $row->idMaestroSerie?>"><?php echo $row->serie?></option>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+
 
 
 
@@ -124,15 +134,17 @@
 
         $('#btnConfirmAdd').click(function () {
             console.log('clicked');
-            $.post('<?php echo base_url('index.php/Api/add')?>',
+            $.post('<?php echo base_url('index.php/DetalleMaestro/add')?>',
                 {
-                    serie       : $('#inputFormSerie').val(),
-                    partNumber  : $('#inputFormPartNumber').val(),
-                    totalWeight : $('#inputFormTotalWeight').val(),
-                    taraWeight  : $('#inputFormTaraWeight').val(),
-                    totalLenght : $('#inputFormTotalLenght').val(),
-                    unit        : $('#inputFormUnit').val(),
-                    date        : $('#inputFormDate').val()
+                    tipoMovimiento  : $('#inputFormTipoMovimiento').val(),
+                    fecha           : $('#inputFormFecha').val(),
+                    pesoActual      : $('#inputFormPesoActual').val(),
+                    consumoKg       : $('#inputFormConsumoKg').val(),
+                    consumoLongitud : $('#inputFormConsumoLongitud').val(),
+                    localizacion    : $('#inputFormLocalizacion').val(),
+                    gafete          : $('#inputFormGafete').val(),
+                    idMaestroSerie  : $('#inputFormIdMaestroSerie').val()
+
                 },
                 function (data) {
                     location.reload();
