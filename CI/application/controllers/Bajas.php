@@ -10,7 +10,9 @@ class Bajas extends CI_Controller
 {
     public function index(){
         $this->load->model('Bajas_model');
+        $this->load->model('Detallemaestro_model');
         $arg['data']= $this->Bajas_model->getAll();
+        $arg['detalleMaestro'] =$this->Detallemaestro_model->getAll();
         $this->load->view('header');
         $this->load->view('bajas/index',$arg);
         $this->load->view('footer');
