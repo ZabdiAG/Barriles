@@ -10,13 +10,13 @@ class Bajas_model extends CI_Model
 {
     /*
      * idBaja
-     * slocInicial
-     * slocDestino
-     * isBajaSAP
-     * idDetalleMaestro
-     * dateBaja
-     * documento
-     * ajusteCantidad
+     * slocInicial      varchar 4
+     * slocDestino      varchar 3
+     * isBajaSAP        tinyint
+     * idDetalleMaestro int
+     * dateBaja         datetime
+     * documento        varchar 70
+     * ajusteCantidad   decimal 10 3
      */
 
     public function __construct(){
